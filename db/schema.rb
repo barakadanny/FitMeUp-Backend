@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_113527) do
 
   create_table "roles", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "role", null: false
+    t.string "role", default: "user", null: false
     t.text "security_question"
     t.text "security_answer"
     t.datetime "created_at", null: false
