@@ -1,9 +1,9 @@
 class CreateTrainers < ActiveRecord::Migration[7.0]
   def change
     create_table :trainers do |t|
-      t.references :user, null: false, foreign_key: true
-      t.decimal :price
-      t.text :bio
+      t.references :user, references: :users, null: false, foreign_key: { to_table: :users }
+      t.decimal :price, null: false
+      t.text :bio, null: true
 
       t.timestamps
     end
