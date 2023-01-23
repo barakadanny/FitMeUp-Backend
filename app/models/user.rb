@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  has_one :roles, destroy: :cascade
-  has_one :trainers, destroy: :cascade
-  has_many :appointments, destroy: :cascade
+  has_one :roles, dependent: :destroy
+  has_one :trainers, dependent: :destroy
+  has_many :appointments, dependent: :destroy
 
   validates :full_name, :date_of_birth, :address, :email_address, presence: true
   validates :username, presence: true, uniqueness: { case_sensitive: false }
