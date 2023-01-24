@@ -1,4 +1,6 @@
 class Api::V1::AppointmentsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  before_action :set_appointment, only: [:show, :update, :destroy]
 
   def index
     @appointments = Appointment.all
@@ -24,8 +26,12 @@ class Api::V1::AppointmentsController < ApplicationController
   end
 
   def destroy
-    @appointment.destroy
-    head :no_content
+    if @appointment.present?
+      @appointment.destroy
+      head :no_content
+    else
+      render json: {error: "appointment not found"}, status: :not_found
+    end
   end
 
   private
