@@ -10,6 +10,14 @@ class Api::V1::AppointmentsController < ApplicationController
     end
   end
 
+  def update
+    if @appointment.update(appointment_params)
+      render json: @appointment
+    else
+      render json: { errors: @appointment.errors }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_appointment
