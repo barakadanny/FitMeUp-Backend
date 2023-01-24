@@ -1,6 +1,6 @@
 class Api::V1::AppointmentsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :set_appointment, only: [:show, :update, :destroy]
+  before_action :set_appointment, only: [:show, :create, :update, :destroy]
 
   def index
     @appointments = Appointment.all
