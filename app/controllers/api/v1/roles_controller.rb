@@ -5,6 +5,10 @@ class Api::V1::RolesController < ApplicationController
     render json: @roles
   end
 
+  def show
+    render json: @role
+  end
+
   def create
     @role = Role.new(role_params)
       
