@@ -1,4 +1,13 @@
 class Api::V1::RolesController < ApplicationController
+  def create
+    @role = Role.new(role_params)
+      
+    if @role.save
+      render json: @role, status: :created
+    else
+      render json: { errors: @role.errors }, status: :unprocessable_entity
+    end
+  end
 
   private
 
