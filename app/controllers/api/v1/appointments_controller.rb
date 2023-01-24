@@ -18,6 +18,11 @@ class Api::V1::AppointmentsController < ApplicationController
     end
   end
 
+  def destroy
+    @appointment.destroy
+    head :no_content
+  end
+
   private
 
   def set_appointment
