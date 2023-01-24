@@ -17,6 +17,11 @@ class Api::V1::RolesController < ApplicationController
     end
   end
 
+  def destroy
+    @role.destroy
+    head :no_content
+  end
+
   private
 
   def set_role
