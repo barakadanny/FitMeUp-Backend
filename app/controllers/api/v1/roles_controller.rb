@@ -1,6 +1,8 @@
 class Api::V1::RolesController < ApplicationController
   skip_before_action :verify_authenticity_token
+  # rubocop:disable Style/SymbolArray
   before_action :set_role, only: [:show, :create, :update, :destroy]
+  # rubocop:enable Style/SymbolArray
 
   def index
     @roles = Role.all
@@ -13,7 +15,7 @@ class Api::V1::RolesController < ApplicationController
 
   def create
     @role = Role.new(role_params)
-      
+
     if @role.save
       render json: @role, status: :created
     else
@@ -44,4 +46,3 @@ class Api::V1::RolesController < ApplicationController
     params.require(:role).permit(:user_id, :role, :security_question, :security_answer)
   end
 end
-  

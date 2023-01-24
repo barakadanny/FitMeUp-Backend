@@ -1,6 +1,8 @@
 class Api::V1::AppointmentsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  # rubocop:disable Style/SymbolArray
   before_action :set_appointment, only: [:show, :create, :update, :destroy]
+  # rubocop:enable Style/SymbolArray
 
   def index
     @appointments = Appointment.all
@@ -9,7 +11,7 @@ class Api::V1::AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.new(appointment_params)
-  
+
     if @appointment.save
       render json: @appointment, status: :created
     else
@@ -30,7 +32,7 @@ class Api::V1::AppointmentsController < ApplicationController
       @appointment.destroy
       head :no_content
     else
-      render json: {error: "appointment not found"}, status: :not_found
+      render json: { error: 'appointment not found' }, status: :not_found
     end
   end
 
