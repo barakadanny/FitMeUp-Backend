@@ -9,6 +9,14 @@ class Api::V1::RolesController < ApplicationController
     end
   end
 
+  def update
+    if @role.update(role_params)
+      render json: @role
+    else
+      render json: { errors: @role.errors }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_role
