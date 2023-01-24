@@ -1,4 +1,10 @@
 class Api::V1::RolesController < ApplicationController
+
+  def index
+    @roles = Role.all
+    render json: @roles
+  end
+
   def create
     @role = Role.new(role_params)
       
