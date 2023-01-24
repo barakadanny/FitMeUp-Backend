@@ -1,5 +1,10 @@
 class Api::V1::AppointmentsController < ApplicationController
 
+  def index
+    @appointments = Appointment.all
+    render json: @appointments
+  end
+
   def create
     @appointment = Appointment.new(appointment_params)
   
