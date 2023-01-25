@@ -7,8 +7,8 @@ class Api::V1::AppointmentsController < ApplicationController
   end
 
   def show
-    @appointment = Appointment.find(params[:id])
-    render json: @appointment
+    @appointment = Appointment.joins(:user, :trainer).find(params[:id])
+    render json: @appointment, include: [:user, :trainer]
   end
 
   def create
