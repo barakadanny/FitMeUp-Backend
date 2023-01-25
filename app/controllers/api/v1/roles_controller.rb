@@ -39,6 +39,6 @@ class Api::V1::RolesController < ApplicationController
   private
 
   def role_params
-    params.permit(:role, :security_question, :security_answer)
+    params.permit(:role, :security_question, :security_answer, :user_id)
   end
 end
