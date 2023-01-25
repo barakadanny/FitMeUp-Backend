@@ -8,7 +8,9 @@ class Api::V1::AppointmentsController < ApplicationController
 
   def show
     @appointment = Appointment.joins(:user, :trainer).find(params[:id])
+    # rubocop:disable Style/SymbolArray
     render json: @appointment, include: [:user, :trainer]
+    # rubocop:enable Style/SymbolArray
   end
 
   def create
