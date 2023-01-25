@@ -53,7 +53,7 @@ end
 private
 
 def modify_trainer(trainer)
-    {
+  {
     id: trainer.id,
     user_id: trainer.user_id,
     price: trainer.price,
