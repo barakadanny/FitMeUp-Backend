@@ -1,6 +1,6 @@
-class TrainerController < ApplicationController
+class Api::V1::TrainersController < ApplicationController
     def index
-        @all_trainers = Trainer.all
+        @all_trainers = Trainer
         render json: @all_trainers
     end
 
@@ -10,7 +10,7 @@ class TrainerController < ApplicationController
     end
 
     def create
-        @trainer = Trainer.new (
+        @trainer = Trainer.new(
             user_id: params[:user_id],
             price: params[:price],
             bio: params[:bio]
