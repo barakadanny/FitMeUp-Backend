@@ -1,12 +1,21 @@
 class Api::V1::TrainersController < ApplicationController
   def index
-    @all_trainers = Trainer
-    render json: @all_trainers
+    @all_trainers = Trainer.all.includes(:specialities)
+
+    render json: @all_trainers.as_json(specialities: 'sample')
   end
 
   def show
     @trainer = Trainer.find(params[:id])
-    render json: @trainer
+    render json: {
+      id: @trainer.id,
+      user_id: @trainer.user_id,
+      price: @trainer.price,
+      bio: @trainer.bio,
+      created_at: @trainer.created_at,
+      updated_at: @trainer.updated_at,
+      specialities: @trainer.specialities
+    }
   end
 
   def create
