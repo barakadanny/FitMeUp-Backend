@@ -1,8 +1,7 @@
 class Api::V1::TrainersController < ApplicationController
   def index
     @all_trainers = Trainer.all.includes(:specialities)
-
-    render json: @all_trainers.as_json(specialities: 'sample')
+    render json: @all_trainers
   end
 
   def show
