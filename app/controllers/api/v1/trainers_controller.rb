@@ -1,20 +1,16 @@
 class Api::V1::TrainersController < ApplicationController
   def index
     @all_trainers = Trainer.all.includes(:specialities)
-    render json: @all_trainers
+    modified_trainers = @all_trainers.map do |trainer|
+      modify_trainer(trainer)
+    end
+
+    render json: modified_trainers
   end
 
   def show
     @trainer = Trainer.find(params[:id])
-    render json: {
-      id: @trainer.id,
-      user_id: @trainer.user_id,
-      price: @trainer.price,
-      bio: @trainer.bio,
-      created_at: @trainer.created_at,
-      updated_at: @trainer.updated_at,
-      specialities: @trainer.specialities
-    }
+    render json: modify_trainer(@trainer)
   end
 
   def create
@@ -52,4 +48,18 @@ class Api::V1::TrainersController < ApplicationController
       render json: @trainer
     end
   end
+end
+
+private
+
+def modify_trainer(trainer)
+    {
+    id: trainer.id,
+    user_id: trainer.user_id,
+    price: trainer.price,
+    bio: trainer.bio,
+    created_at: trainer.created_at,
+    updated_at: trainer.updated_at,
+    specialities: trainer.specialities
+  }
 end
