@@ -1,8 +1,5 @@
 class Api::V1::AppointmentsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  # rubocop:disable Style/SymbolArray
-  before_action :set_appointment, only: [:show, :create, :update, :destroy]
-  # rubocop:enable Style/SymbolArray
 
   def index
     @appointments = Appointment.all
@@ -20,6 +17,7 @@ class Api::V1::AppointmentsController < ApplicationController
   end
 
   def update
+    @appointment = Appointment.find(params[:id])
     if @appointment.update(appointment_params)
       render json: @appointment
     else
@@ -28,6 +26,7 @@ class Api::V1::AppointmentsController < ApplicationController
   end
 
   def destroy
+    @appointment = Appointment.find(params[:id])
     if @appointment.present?
       @appointment.destroy
       head :no_content
@@ -38,11 +37,7 @@ class Api::V1::AppointmentsController < ApplicationController
 
   private
 
-  def set_appointment
-    @appointment = Appointment.find(params[:id])
-  end
-
   def appointment_params
-    params.permit(:user_id, :trainer_id, :appointment_date, :appointment_status, :context)
+    params.require(:appointment).permit(:user_id, :trainer_id, :appointment_date, :appointment_status, :context)
   end
 end
