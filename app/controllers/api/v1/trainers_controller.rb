@@ -13,46 +13,41 @@ class Api::V1::TrainersController < ApplicationController
     render json: modify_trainer(@trainer)
   end
 
-  def create
-    # add a record in the user table
-    # add a record in the trainer_specialities table
+  # def create
+  #   @trainer = Trainer.new(
+  #     user_id: params[:user_id],
+  #     price: params[:price],
+  #     bio: params[:bio]
+  #   )
 
-    @trainer = Trainer.new(
-      user_id: params[:user_id],
-      price: params[:price],
-      bio: params[:bio]
-    )
+  #   if @trainer.save
+  #     render json: @trainer, status: :created
+  #   else
+  #     render json: { errors: @trainer.errors }, status: :unprocessable_entity
+  #   end
+  # end
 
-    if @trainer.save
-      render json: @trainer, status: :created
-    else
-      render json: { errors: @trainer.errors }, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   @trainer = Trainer.find(params[:id])
 
-  def update
-    @trainer = Trainer.find(params[:id])
-    # update users table
-    # update trainer_specialities table
+  #   if @trainer.update(user_id: params[:user_id], price: params[:price], bio: params[:bio])
+  #     render json: @trainer
+  #   else
+  #     render json: { errors: @trainer.errors }, status: :unprocessable_entity
+  #   end
+  # end
 
-    if @trainer.update(user_id: params[:user_id], price: params[:price], bio: params[:bio])
-      render json: @trainer
-    else
-      render json: { errors: @trainer.errors }, status: :unprocessable_entity
-    end
-  end
+  # def destroy
+  #   @trainers = Trainer.all
+  #   @trainer = Trainer.find(params[:id])
 
-  def destroy
-    @trainers = Trainer.all
-    @trainer = Trainer.find(params[:id])
-
-    if @trainer.nil?
-      render json: { error: 'trainer not found' }, status: :not_found
-    else
-      @trainer.destroy
-      render json: @trainer
-    end
-  end
+  #   if @trainer.nil?
+  #     render json: { error: 'trainer not found' }, status: :not_found
+  #   else
+  #     @trainer.destroy
+  #     render json: @trainer
+  #   end
+  # end
 end
 
 private
