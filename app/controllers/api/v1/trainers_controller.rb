@@ -1,6 +1,6 @@
 class Api::V1::TrainersController < ApplicationController
   def index
-    @all_trainers = Trainer.all.includes(:specialities)
+    @all_trainers = Trainer.all.includes(:specialities, :user)
     modified_trainers = @all_trainers.map do |trainer|
       modify_trainer(trainer)
     end
@@ -9,7 +9,7 @@ class Api::V1::TrainersController < ApplicationController
   end
 
   def show
-    @trainer = Trainer.find(params[:id])
+    @trainer = Trainer.where(id: params[:id]).includes(:user)[0]
     render json: modify_trainer(@trainer)
   end
 
@@ -55,7 +55,15 @@ private
 def modify_trainer(trainer)
   {
     id: trainer.id,
-    user_id: trainer.user_id,
+    full_name: trainer.user.full_name,
+    date_of_birth: trainer.user.date_of_birth,
+    address: trainer.user.address,
+    email_address: trainer.user.email_address,
+    phone_number: trainer.user.phone_number,
+    health_info: trainer.user.health_info,
+    height_in_meter: trainer.user.height_in_meter,
+    weight_in_kg: trainer.user.weight_in_kg,
+    profile_pic: trainer.user.profile_pic,
     price: trainer.price,
     bio: trainer.bio,
     created_at: trainer.created_at,
@@ -63,3 +71,14 @@ def modify_trainer(trainer)
     specialities: trainer.specialities
   }
 end
+
+# username: "yo_yo_danny",
+#  full_name: "Danny Baraka",
+#  date_of_birth: Wed, 10 May 1995,
+#  address: "Nairobi, KENYA",
+#  email_address: "danny@gmail.com",
+#  phone_number: "+91 1234567890",
+#  health_info: nil,
+#  height_in_meter: nil,
+#  weight_in_kg: nil,
+#  profile_pic: "https://unsplash.com/photos/iEEBWgY_6lA"
