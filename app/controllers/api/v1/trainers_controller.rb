@@ -14,6 +14,9 @@ class Api::V1::TrainersController < ApplicationController
   end
 
   def create
+    # add a record in the user table
+    # add a record in the trainer_specialities table
+
     @trainer = Trainer.new(
       user_id: params[:user_id],
       price: params[:price],
@@ -29,6 +32,8 @@ class Api::V1::TrainersController < ApplicationController
 
   def update
     @trainer = Trainer.find(params[:id])
+    # update users table
+    # update trainer_specialities table
 
     if @trainer.update(user_id: params[:user_id], price: params[:price], bio: params[:bio])
       render json: @trainer
@@ -42,7 +47,7 @@ class Api::V1::TrainersController < ApplicationController
     @trainer = Trainer.find(params[:id])
 
     if @trainer.nil?
-      render json: { error: 'appointment not found' }, status: :not_found
+      render json: { error: 'trainer not found' }, status: :not_found
     else
       @trainer.destroy
       render json: @trainer
@@ -71,14 +76,3 @@ def modify_trainer(trainer)
     specialities: trainer.specialities
   }
 end
-
-# username: "yo_yo_danny",
-#  full_name: "Danny Baraka",
-#  date_of_birth: Wed, 10 May 1995,
-#  address: "Nairobi, KENYA",
-#  email_address: "danny@gmail.com",
-#  phone_number: "+91 1234567890",
-#  health_info: nil,
-#  height_in_meter: nil,
-#  weight_in_kg: nil,
-#  profile_pic: "https://unsplash.com/photos/iEEBWgY_6lA"
