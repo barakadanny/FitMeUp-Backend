@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      post 'users/login', to: 'users#login'
+      post 'secure/auth_login', to: 'auths#login'
+      resources :users
       resources :trainers
       resources :specialities, only: [:index]
       resources :appointments
