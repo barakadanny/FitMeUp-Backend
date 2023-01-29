@@ -3,13 +3,9 @@ module Api
     class UsersController < ApplicationController
       skip_before_action :verify_authenticity_token
 
-      def index
-      end
-
-      private
-
-      def user_params
-        params.require(:user).permit(:username)
+      def show
+        @user = Role.includes(:user).find(params[:id])
+        render json: @user
       end
     end
   end
