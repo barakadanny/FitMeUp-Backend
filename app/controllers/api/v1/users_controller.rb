@@ -1,15 +1,17 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      def show
-        @user = User.find(user_params)
+      skip_before_action :verify_authenticity_token
+
+      def login
+        @user = User.find_by(username: user_params[:username])
         render json: @user
       end
 
       private
 
       def user_params
-        params.permit(:username)
+        params.require(:user).permit(:username)
       end
     end
   end
