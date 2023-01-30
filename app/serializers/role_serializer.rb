@@ -1,6 +1,6 @@
 class RoleSerializer < ActiveModel::Serializer
   attributes :user
-  
+
   def user
     exclude = ['id', 'created_at', 'updated_at', 'security_question', 'security_answer']
     role = JSON.parse(object.to_json).except(*exclude)
