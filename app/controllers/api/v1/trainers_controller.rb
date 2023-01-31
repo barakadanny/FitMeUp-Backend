@@ -19,6 +19,15 @@ class Api::V1::TrainersController < ApplicationController
     exclude = ['id', 'user_id', 'created_at', 'updated_at']
     user = JSON.parse(trainer_obj.user.to_json).except(*exclude)
     trainer = JSON.parse(trainer_obj.to_json).except(*exclude)
+    # appointments = trainer_obj.appointments.map do |appointment|
+    #   obj = JSON.parse(appointment.to_json).except('created_at', 'updated_at', 'trainer_id')
+    #   appointement_user = User.find(obj['user_id'])
+    #   appointement_user_obj = {
+    #     id: appointement_user.id
+    #   }
+    #   filtered_data = JSON.parse(appointement_user.to_json).except(*exclude)
+    #   appointement_user_obj.merge(filtered_data)
+    # end
     specialities = trainer_obj.specialities.map do |speciality|
       obj = JSON.parse(speciality.to_json).except(*exclude)
       obj['name']
@@ -29,6 +38,9 @@ class Api::V1::TrainersController < ApplicationController
     specialities_obj = {
       specialities: specialities
     }
+    # appointment_obj = {
+    #   appointments:
+    # }
     user_detail.merge(user, trainer, specialities_obj)
   end
 end
