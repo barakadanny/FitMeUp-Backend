@@ -8,7 +8,28 @@ module Api
         render json: modify_user(@user)
       end
 
+      def new
+        @user = User.new
+      end
+
+      def create
+        @user = User.new(user_params.except('role', 'price', 'bio'))
+        if @user.save
+          Role.create(role: params[:role], user: @user)
+          if params[:role] == 'trainer'
+            Trainer.create(price: params[:price], bio: params[:bio], user_id: @user.id)
+          end
+          render json: modify_user(@user), status: :created
+        else
+          render json: { errors: @user.errors }, status: :unprocessable_entity
+        end
+      end
+
       private
+
+      def user_params
+        params.permit(:username, :full_name, :date_of_birth, :email_address, :phone_number, :health_info, :height_in_meter, :weight_in_kg, :profile_pic, :address, :role, :price, :bio)
+      end
 
       def modify_user(user_obj)
         exclude = ['created_at', 'updated_at', 'security_question', 'security_answer', 'user_id']
