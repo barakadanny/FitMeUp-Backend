@@ -16,7 +16,7 @@ class Api::V1::TrainersController < ApplicationController
   private
 
   def modify_trainer(trainer_obj)
-    exclude = ['id', 'user_id', 'created_at', 'updated_at']
+    exclude = %w[id user_id created_at updated_at]
     user = JSON.parse(trainer_obj.user.to_json).except(*exclude)
     trainer = JSON.parse(trainer_obj.to_json).except(*exclude)
     # appointments = trainer_obj.appointments.map do |appointment|
@@ -36,7 +36,7 @@ class Api::V1::TrainersController < ApplicationController
       id: trainer_obj.user_id
     }
     specialities_obj = {
-      specialities: specialities
+      specialities:
     }
     # appointment_obj = {
     #   appointments:

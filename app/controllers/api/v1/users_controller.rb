@@ -16,9 +16,7 @@ module Api
         @user = User.new(user_params.except('role', 'price', 'bio'))
         if @user.save
           Role.create(role: params[:role], user: @user)
-          if params[:role] == 'trainer'
-            Trainer.create(price: params[:price], bio: params[:bio], user_id: @user.id)
-          end
+          Trainer.create(price: params[:price], bio: params[:bio], user_id: @user.id) if params[:role] == 'trainer'
           render json: modify_user(@user), status: :created
         else
           render json: { errors: @user.errors }, status: :unprocessable_entity
@@ -28,11 +26,12 @@ module Api
       private
 
       def user_params
-        params.permit(:username, :full_name, :date_of_birth, :email_address, :phone_number, :health_info, :height_in_meter, :weight_in_kg, :profile_pic, :address, :role, :price, :bio)
+        params.permit(:username, :full_name, :date_of_birth, :email_address, :phone_number, :health_info,
+                      :height_in_meter, :weight_in_kg, :profile_pic, :address, :role, :price, :bio)
       end
 
       def modify_user(user_obj)
-        exclude = ['created_at', 'updated_at', 'security_question', 'security_answer', 'user_id']
+        exclude = %w[created_at updated_at security_question security_answer user_id]
         role_json = JSON.parse(user_obj.roles.to_json).except(*exclude, 'id')
         user_json = JSON.parse(user_obj.to_json).except(*exclude)
         appointments = user_obj.appointments.map do |appointment|
@@ -48,7 +47,7 @@ module Api
           appointement_trainer_obj.merge(filtered_data, trainer_user_detail, obj)
         end
         appointment_obj = {
-          appointments:,
+          appointments:
         }
         user_json.merge(role_json, appointment_obj)
       end
