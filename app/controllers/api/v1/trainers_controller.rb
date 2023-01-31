@@ -9,7 +9,7 @@ class Api::V1::TrainersController < ApplicationController
   end
 
   def show
-    @trainer = Trainer.where(id: params[:id]).includes(:user)[0]
+    @trainer = Trainer.find(params[:id])
     render json: modify_trainer(@trainer)
   end
 
@@ -48,26 +48,23 @@ class Api::V1::TrainersController < ApplicationController
   #     render json: @trainer
   #   end
   # end
-end
+  
+  private
 
-private
-
-def modify_trainer(trainer)
-  {
-    id: trainer.id,
-    full_name: trainer.user.full_name,
-    date_of_birth: trainer.user.date_of_birth,
-    address: trainer.user.address,
-    email_address: trainer.user.email_address,
-    phone_number: trainer.user.phone_number,
-    health_info: trainer.user.health_info,
-    height_in_meter: trainer.user.height_in_meter,
-    weight_in_kg: trainer.user.weight_in_kg,
-    profile_pic: trainer.user.profile_pic,
-    price: trainer.price,
-    bio: trainer.bio,
-    created_at: trainer.created_at,
-    updated_at: trainer.updated_at,
-    specialities: trainer.specialities
-  }
+  def modify_trainer(trainer_obj)
+    exclude = ['id', 'user_id', 'created_at', 'updated_at']
+    user = JSON.parse(trainer_obj.user.to_json).except(*exclude)
+    trainer = JSON.parse(trainer_obj.to_json).except(*exclude)
+    specialities = trainer_obj.specialities.map do |speciality|
+      obj = JSON.parse(speciality.to_json).except(*exclude)
+      obj['name']
+    end
+    user_detail = {
+      id: trainer_obj.user_id
+    }
+    specialities_obj = {
+      specialities: specialities
+    }
+    user_detail.merge(user, trainer, specialities_obj)
+  end
 end
