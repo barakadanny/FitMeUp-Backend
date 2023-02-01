@@ -73,4 +73,4 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'active_model_serializers', '~> 0.10.2'
+gem "rack-cors", "~> 1.1"
