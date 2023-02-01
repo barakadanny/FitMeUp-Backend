@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   namespace :api do
     namespace :v1 do
       post 'secure/auth_login', to: 'auths#login'
