@@ -2,9 +2,14 @@ module Api
   module V1
     class FitmeupsController < ApplicationController
       def index
-        render json: params
-        # @user = User.find_by(username: params[:token])
-        # render json: @user
+        @user = User.find_by(username: params[:token])
+        if @user.nil?
+          render json: { msg: 'please use valid token' }
+        else
+          render json: {
+            user: @user
+          }
+        end
       end
     end
   end

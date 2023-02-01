@@ -1,17 +1,22 @@
 module Api
   module V1
     class AuthsController < ApplicationController
-      skip_before_action :verify_authenticity_token
+      before_action :authenticate_request, except: :login
 
       def login
         @user = User.find_by(username: user_params[:username])
-        render json: {:token => @user.username}
+        if @user&.authenticate(user_params[:password])
+          token = JsonWebToken.encode(user_id: @user.id)
+          render json: { token: token }, status: :ok
+        else
+          render json: { error: 'unauthorized' }, status: :unauthorized
+        end
       end
 
       private
 
       def user_params
-        params.require(:auth).permit(:username)
+        params.require(:auth).permit(:username, :password)
       end
     end
   end

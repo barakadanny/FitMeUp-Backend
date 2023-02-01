@@ -1,4 +1,6 @@
 class Api::V1::TrainersController < ApplicationController
+  before_action :authenticate_request, except: :index
+
   def index
     @all_trainers = Trainer.all.includes(:specialities, :user)
     modified_trainers = @all_trainers.map do |trainer|
@@ -9,8 +11,22 @@ class Api::V1::TrainersController < ApplicationController
   end
 
   def show
-    @trainer = Trainer.find(params[:id])
-    render json: modify_trainer(@trainer)
+    begin
+      @trainer = Trainer.find(params[:id])
+      render json: modify_trainer(@trainer)
+    rescue ActiveRecord::RecordNotFound => e
+      render json: { 'message': e.message }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    begin
+      @trainer = Trainer.find(params[:id])
+      @user = User.find(@trainer.user_id)
+      @user.destroy
+    rescue ActiveRecord::RecordNotFound => e
+      render json: { 'message': e.message }, status: :unprocessable_entity
+    end
   end
 
   private

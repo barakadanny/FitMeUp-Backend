@@ -1,7 +1,11 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      skip_before_action :verify_authenticity_token
+      before_action :authenticate_request, except: :create
+
+      def index
+        render json: @current_user
+      end
 
       def show
         @user = User.find(params[:id])
@@ -12,11 +16,27 @@ module Api
         @user = User.new
       end
 
+      def create_trainer
+        
+      end
+
       def create
-        @user = User.new(user_params.except('role', 'price', 'bio'))
+        @user = User.new(user_params.except('price', 'bio'))
         if @user.save
-          Role.create(role: params[:role], user: @user)
-          Trainer.create(price: params[:price], bio: params[:bio], user_id: @user.id) if params[:role] == 'trainer'
+          if request.headers['Authorization'].present?
+            header = request.headers['Authorization']
+            header = header.split(' ').last if header
+            puts "=============#{header}"
+            decoded = JsonWebToken.decode(header)
+            user = Role.find_by(user_id: decoded[:user_id])
+            puts "===========#{user.roles}"
+            if user == 'admin'
+              Role.create(role: 'trainer', user: @user)
+              Trainer.create(price: params[:price], bio: params[:bio], user: @user)
+            end
+          else
+            Role.create(user: @user)
+          end
           render json: modify_user(@user), status: :created
         else
           render json: { errors: @user.errors }, status: :unprocessable_entity
@@ -27,7 +47,7 @@ module Api
 
       def user_params
         params.permit(:username, :full_name, :date_of_birth, :email_address, :phone_number, :health_info,
-                      :height_in_meter, :weight_in_kg, :profile_pic, :address, :role, :price, :bio)
+                      :height_in_meter, :weight_in_kg, :profile_pic, :address, :price, :bio, :password, :password_confirmation)
       end
 
       def modify_user(user_obj)
