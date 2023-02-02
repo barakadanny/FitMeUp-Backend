@@ -7,11 +7,6 @@ module Api
         render json: modify_user(@current_user)
       end
 
-      def show
-        @user = User.find(params[:id])
-        render json: modify_user(@user)
-      end
-
       def new
         @user = User.new
       end
@@ -22,7 +17,6 @@ module Api
           if request.headers['Authorization'].present?
             header = request.headers['Authorization']
             header = header.split(' ').last if header
-            puts "=============#{header}"
             decoded = JsonWebToken.decode(header)
             user = Role.find_by(user_id: decoded[:user_id])
             if user.role == 'admin'
