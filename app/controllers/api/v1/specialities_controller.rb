@@ -5,4 +5,14 @@ class Api::V1::SpecialitiesController < ApplicationController
     @specialities = Speciality.all
     render json: @specialities
   end
+
+  def create
+
+  end
+end
+
+private
+
+def speciality_params
+  params.require(:speciality).permit(:name)
 end
