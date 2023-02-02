@@ -1,5 +1,5 @@
 class Api::V1::RolesController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  before_action :authenticate_request
 
   def index
     @roles = Role.all

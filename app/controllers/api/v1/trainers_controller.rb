@@ -1,4 +1,6 @@
 class Api::V1::TrainersController < ApplicationController
+  before_action :authenticate_request, except: :index
+
   def index
     @all_trainers = Trainer.all.includes(:specialities, :user)
     modified_trainers = @all_trainers.map do |trainer|
@@ -9,65 +11,50 @@ class Api::V1::TrainersController < ApplicationController
   end
 
   def show
-    @trainer = Trainer.where(id: params[:id]).includes(:user)[0]
+    @trainer = Trainer.find(params[:id])
     render json: modify_trainer(@trainer)
+  rescue ActiveRecord::RecordNotFound => e
+    render json: { message: e.message }, status: :unprocessable_entity
   end
 
-  # def create
-  #   @trainer = Trainer.new(
-  #     user_id: params[:user_id],
-  #     price: params[:price],
-  #     bio: params[:bio]
-  #   )
+  def create; end
 
-  #   if @trainer.save
-  #     render json: @trainer, status: :created
-  #   else
-  #     render json: { errors: @trainer.errors }, status: :unprocessable_entity
-  #   end
-  # end
+  def destroy
+    @trainer = Trainer.find(params[:id])
+    @user = User.find(@trainer.user_id)
+    @user.destroy
+  rescue ActiveRecord::RecordNotFound => e
+    render json: { message: e.message }, status: :unprocessable_entity
+  end
 
-  # def update
-  #   @trainer = Trainer.find(params[:id])
+  private
 
-  #   if @trainer.update(user_id: params[:user_id], price: params[:price], bio: params[:bio])
-  #     render json: @trainer
-  #   else
-  #     render json: { errors: @trainer.errors }, status: :unprocessable_entity
-  #   end
-  # end
-
-  # def destroy
-  #   @trainers = Trainer.all
-  #   @trainer = Trainer.find(params[:id])
-
-  #   if @trainer.nil?
-  #     render json: { error: 'trainer not found' }, status: :not_found
-  #   else
-  #     @trainer.destroy
-  #     render json: @trainer
-  #   end
-  # end
-end
-
-private
-
-def modify_trainer(trainer)
-  {
-    id: trainer.id,
-    full_name: trainer.user.full_name,
-    date_of_birth: trainer.user.date_of_birth,
-    address: trainer.user.address,
-    email_address: trainer.user.email_address,
-    phone_number: trainer.user.phone_number,
-    health_info: trainer.user.health_info,
-    height_in_meter: trainer.user.height_in_meter,
-    weight_in_kg: trainer.user.weight_in_kg,
-    profile_pic: trainer.user.profile_pic,
-    price: trainer.price,
-    bio: trainer.bio,
-    created_at: trainer.created_at,
-    updated_at: trainer.updated_at,
-    specialities: trainer.specialities
-  }
+  def modify_trainer(trainer_obj)
+    exclude = %w[id user_id created_at updated_at]
+    user = JSON.parse(trainer_obj.user.to_json).except(*exclude)
+    trainer = JSON.parse(trainer_obj.to_json).except(*exclude)
+    # appointments = trainer_obj.appointments.map do |appointment|
+    #   obj = JSON.parse(appointment.to_json).except('created_at', 'updated_at', 'trainer_id')
+    #   appointement_user = User.find(obj['user_id'])
+    #   appointement_user_obj = {
+    #     id: appointement_user.id
+    #   }
+    #   filtered_data = JSON.parse(appointement_user.to_json).except(*exclude)
+    #   appointement_user_obj.merge(filtered_data)
+    # end
+    specialities = trainer_obj.specialities.map do |speciality|
+      obj = JSON.parse(speciality.to_json).except(*exclude)
+      obj['name']
+    end
+    user_detail = {
+      id: trainer_obj.user_id
+    }
+    specialities_obj = {
+      specialities:
+    }
+    # appointment_obj = {
+    #   appointments:
+    # }
+    user_detail.merge(user, trainer, specialities_obj)
+  end
 end

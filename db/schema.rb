@@ -66,6 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_113527) do
     t.date "date_of_birth", null: false
     t.text "address", null: false
     t.string "email_address", null: false
+    t.string "password_digest", null: false
     t.string "phone_number", null: false
     t.text "health_info"
     t.decimal "height_in_meter"

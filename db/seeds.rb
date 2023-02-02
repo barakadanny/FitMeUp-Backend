@@ -7,31 +7,31 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 puts "Seeding to database initiated ....\n"
-admin_user = User.create(username: 'skyv26', full_name: 'Aakash Verma', date_of_birth: '01/01/1990', address: 'Punjab, INDIA', email_address: 'dev.aakashv@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://unsplash.com/photos/iEEBWgY_6lA')
+admin_user = User.create(username: 'skyv26', full_name: 'Aakash Verma', date_of_birth: '01/01/1990', address: 'Punjab, INDIA', email_address: 'dev.aakashv@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://unsplash.com/photos/iEEBWgY_6lA', password: '12345678', password_confirmation: '12345678')
 admin_role = Role.create(role: 'admin', user: admin_user)
 puts "Admin Created !!\n"
 
-killy = User.create(username: 'itz_me_killy', full_name: 'Killy Quami', date_of_birth: '01/01/2000', address: 'Accra, GHANA', email_address: 'killy@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://unsplash.com/photos/iEEBWgY_6lA')
+killy = User.create(username: 'itz_me_killy', full_name: 'Killy Quami', date_of_birth: '01/01/2000', address: 'Accra, GHANA', email_address: 'killy@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://unsplash.com/photos/iEEBWgY_6lA', password: '12345678', password_confirmation: '12345678')
 user_killy = Role.create(user: killy)
 puts "User 1 Created !!\n"
 
-danny = User.create(username: 'yo_yo_danny', full_name: 'Danny Baraka', date_of_birth: '10/05/1995', address: 'Nairobi, KENYA', email_address: 'danny@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://unsplash.com/photos/iEEBWgY_6lA')
+danny = User.create(username: 'yo_yo_danny', full_name: 'Danny Baraka', date_of_birth: '10/05/1995', address: 'Nairobi, KENYA', email_address: 'danny@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://unsplash.com/photos/iEEBWgY_6lA', password: 'dannydanny', password_confirmation: 'dannydanny')
 danny_role = Role.create(role: 'trainer', user: danny)
 trainer_danny = Trainer.create(price: 20.25, user: danny)
 puts "Trainer 1 Created !!\n"
 
-justice = User.create(username: 'bajeri.justice', full_name: 'Justice Bajeri', date_of_birth: '11/11/2001', address: 'Accra, GHANA', email_address: 'justice@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://unsplash.com/photos/iEEBWgY_6lA')
+justice = User.create(username: 'bajeri.justice', full_name: 'Justice Bajeri', date_of_birth: '11/11/2001', address: 'Accra, GHANA', email_address: 'justice@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://unsplash.com/photos/iEEBWgY_6lA', password: '12345678', password_confirmation: '12345678')
 justice_role = Role.create(role: 'trainer', user: justice)
 trainer_justice = Trainer.create(price: 10.25, user: justice)
 
 puts "Trainer 2 Created !!\n"
 
 
-john = User.create(username: 'kibirige_john', full_name: 'John Kibirige', date_of_birth: '05/05/1996', address: 'UGANDA', email_address: 'john@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://unsplash.com/photos/iEEBWgY_6lA')
+john = User.create(username: 'kibirige_john', full_name: 'John Kibirige', date_of_birth: '05/05/1996', address: 'UGANDA', email_address: 'john@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://unsplash.com/photos/iEEBWgY_6lA', password: '12345678', password_confirmation: '12345678')
 user_john = Role.create(user: john)
 puts "User 2 Created !\n"
 
-muskan = User.create(username: 'muskan', full_name: 'Muskan Gupta', date_of_birth: '28/04/1999', address: 'Uttar Pardesh, INDIA', email_address: 'muskan.gupta@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://unsplash.com/photos/iEEBWgY_6lA')
+muskan = User.create(username: 'muskan', full_name: 'Muskan Gupta', date_of_birth: '28/04/1999', address: 'Uttar Pardesh, INDIA', email_address: 'muskan.gupta@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://unsplash.com/photos/iEEBWgY_6lA', password: '12345678', password_confirmation: '12345678')
 user_muskan = Role.create(user: muskan)
 puts "User 3 Created !!\n"
 

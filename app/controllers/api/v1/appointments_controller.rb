@@ -1,5 +1,5 @@
 class Api::V1::AppointmentsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  before_action :authenticate_request
 
   def index
     @appointments = Appointment.all
@@ -7,10 +7,10 @@ class Api::V1::AppointmentsController < ApplicationController
   end
 
   def show
-    @appointment = Appointment.joins(:user, :trainer).find(params[:id])
-    # rubocop:disable Style/SymbolArray
-    render json: @appointment, include: [:user, :trainer]
-    # rubocop:enable Style/SymbolArray
+    @appointment = Appointment.find(params[:id])
+    render json: @appointment
+    # @appointment = Appointment.joins(:user, :trainer).find(params[:id])
+    # render json: @appointment, include: [:user, :trainer]
   end
 
   def create
