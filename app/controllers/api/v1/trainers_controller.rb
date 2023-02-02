@@ -11,22 +11,20 @@ class Api::V1::TrainersController < ApplicationController
   end
 
   def show
-    begin
-      @trainer = Trainer.find(params[:id])
-      render json: modify_trainer(@trainer)
-    rescue ActiveRecord::RecordNotFound => e
-      render json: { 'message': e.message }, status: :unprocessable_entity
-    end
+    @trainer = Trainer.find(params[:id])
+    render json: modify_trainer(@trainer)
+  rescue ActiveRecord::RecordNotFound => e
+    render json: { message: e.message }, status: :unprocessable_entity
   end
 
+  def create; end
+
   def destroy
-    begin
-      @trainer = Trainer.find(params[:id])
-      @user = User.find(@trainer.user_id)
-      @user.destroy
-    rescue ActiveRecord::RecordNotFound => e
-      render json: { 'message': e.message }, status: :unprocessable_entity
-    end
+    @trainer = Trainer.find(params[:id])
+    @user = User.find(@trainer.user_id)
+    @user.destroy
+  rescue ActiveRecord::RecordNotFound => e
+    render json: { message: e.message }, status: :unprocessable_entity
   end
 
   private

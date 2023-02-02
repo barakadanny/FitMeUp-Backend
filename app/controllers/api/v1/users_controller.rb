@@ -16,7 +16,7 @@ module Api
         if @user.save
           if request.headers['Authorization'].present?
             header = request.headers['Authorization']
-            header = header.split(' ').last if header
+            header = header.split.last if header
             decoded = JsonWebToken.decode(header)
             user = Role.find_by(user_id: decoded[:user_id])
             if user.role == 'admin'
@@ -36,7 +36,8 @@ module Api
 
       def user_params
         params.permit(:username, :full_name, :date_of_birth, :email_address, :phone_number, :health_info,
-                      :height_in_meter, :weight_in_kg, :profile_pic, :address, :price, :bio, :password, :password_confirmation)
+                      :height_in_meter, :weight_in_kg, :profile_pic, :address, :price,
+                      :bio, :password, :password_confirmation)
       end
 
       def modify_user(user_obj)

@@ -7,7 +7,7 @@ module Api
         @user = User.find_by(username: user_params[:username])
         if @user&.authenticate(user_params[:password])
           token = JsonWebToken.encode(user_id: @user.id)
-          render json: { token: token }, status: :ok
+          render json: { token: }, status: :ok
         else
           render json: { error: 'unauthorized' }, status: :unauthorized
         end
