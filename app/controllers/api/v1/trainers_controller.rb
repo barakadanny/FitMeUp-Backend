@@ -51,7 +51,7 @@ class Api::V1::TrainersController < ApplicationController
     }
     specialities_obj = {
       specialities:
-    }
+    } #rubocop:disable Lint/Syntax
     # appointment_obj = {
     #   appointments:
     # }

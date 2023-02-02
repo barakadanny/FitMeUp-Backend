@@ -22,7 +22,7 @@ class Api::V1::SpecialitiesController < ApplicationController
       @speciality.destroy
       render json: { message: 'speciality deleted successfully' }, status: :ok
     else
-       render json: { error: 'spciality not found' }, status: :not_found
+      render json: { error: 'spciality not found' }, status: :not_found
     end
   end
 end
