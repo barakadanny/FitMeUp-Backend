@@ -1,24 +1,3 @@
-# README
+# Fit Me Up Backend
+This an api based application built with rails with an intention of being consumed by the front end version that is; [Fit-Me-Up frontend](https://github.com/killy10o10/FitMeUp).
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
