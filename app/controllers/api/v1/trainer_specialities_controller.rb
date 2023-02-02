@@ -1,5 +1,5 @@
 class Api::V1::TrainerSpecialitiesController < ApplicationController
-  # before_action :authenticate_request
+  before_action :authenticate_request
 
   def create
     @trainer_speciality = TrainerSpeciality.new(trainer_specialities_params)
