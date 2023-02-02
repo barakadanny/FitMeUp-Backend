@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :users
       resources :fitmeups, only: [:index]
       resources :trainers
-      resources :specialities, only: [:index, :create]
+      resources :specialities, only: [:index, :create, :destroy]
       resources :appointments
       resources :roles
     end
