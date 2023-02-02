@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :specialities, only: [:index, :create, :destroy]
       resources :appointments
       resources :roles
+      resources :trainer_specialities, only: [:create]
     end
   end
 end
