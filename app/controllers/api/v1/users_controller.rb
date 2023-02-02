@@ -4,7 +4,7 @@ module Api
       before_action :authenticate_request, except: :create
 
       def index
-        render json: @current_user
+        render json: modify_user(@current_user)
       end
 
       def show
@@ -16,10 +16,6 @@ module Api
         @user = User.new
       end
 
-      def create_trainer
-        
-      end
-
       def create
         @user = User.new(user_params.except('price', 'bio'))
         if @user.save
@@ -29,8 +25,7 @@ module Api
             puts "=============#{header}"
             decoded = JsonWebToken.decode(header)
             user = Role.find_by(user_id: decoded[:user_id])
-            puts "===========#{user.roles}"
-            if user == 'admin'
+            if user.role == 'admin'
               Role.create(role: 'trainer', user: @user)
               Trainer.create(price: params[:price], bio: params[:bio], user: @user)
             end
@@ -51,7 +46,7 @@ module Api
       end
 
       def modify_user(user_obj)
-        exclude = %w[created_at updated_at security_question security_answer user_id]
+        exclude = %w[created_at updated_at security_question security_answer user_id password_digest]
         role_json = JSON.parse(user_obj.roles.to_json).except(*exclude, 'id')
         user_json = JSON.parse(user_obj.to_json).except(*exclude)
         appointments = user_obj.appointments.map do |appointment|
