@@ -13,7 +13,7 @@ dummy_data = [
     "profile_pic": "https://drive.google.com/uc?id=1FgGXNDA8hYAz95F5vDp2seV9pTP8InhA",
     "date_of_birth": "09/11/1982",
     "email_address": "nick@mail.com",
-    "phone_number": "",
+    "phone_number": "+234 8673737",
     "height_in_meter": "1.88",
     "weight_in_kg": "110",
     "price": "49.99",
@@ -42,9 +42,9 @@ dummy_data = [
     "full_name": "Matt Roberts",
     "address": "Mayfair, UK",
     "profile_pic": "https://drive.google.com/uc?id=1Iasvkbtv1SUa7psBq2HByWwsPU3ke02J",
-    "date_of_birth": "+44 2074919989",
+    "date_of_birth": "04/04/2002",
     "email_address": "evolution@mattroberts.co.uk",
-    "phone_number": "+124 6734648738",
+    "phone_number": "+124 67348738",
     "height_in_meter": "1.8",
     "weight_in_kg": "54.6",
     "price": "55.5",
@@ -58,6 +58,7 @@ dummy_data = [
     "address": "New South Wales, Australia",
     "profile_pic": "https://lh3.googleusercontent.com/pw/AMWts8Bp11Jzc0fw4Bpq0qOqfPPK0ScwTaGMPw7olY4WaVdjElqNUcj0c8NE3r1tdSMKfxSFf_3TFb7RjBVyUIIQl7IrTm5YzegThzRU8qW_ZwcD3ZIbWhqeyQ2hjTRl2ZQPa1QsdS5fsw-Nd0xwdadcmg48=w553-h974-no?authuser=0",
     "email_address": "emma@fitmeupmail.com",
+    "date_of_birth": "04/04/2001",
     "phone_number": "+233 673587",
     "height_in_meter": "1.3",
     "weight_in_kg": "45.5",
@@ -104,9 +105,9 @@ puts "Trainer 2 Created !!\n"
 
 dummy_data.each do |trainer|
   user_exclude = trainer
-  user = User.create(user_exclude.except(:bio, :price))
-  role = Role.create(role: 'trainer', user_id: user.id)
-  trainer = Trainer.create(price: trainer[:price], user_id: user.id, bio: trainer[:bio])
+  users = User.create(user_exclude.except(:bio, :price))
+  role = Role.create(role: 'trainer', user: users)
+  trainer = Trainer.create(price: trainer[:price], user: users, bio: trainer[:bio])
 end
 
 john = User.create(username: 'kibirige_john', full_name: 'John Kibirige', date_of_birth: '05/05/1996', address: 'UGANDA', email_address: 'john@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://unsplash.com/photos/iEEBWgY_6lA', password: '12345678', password_confirmation: '12345678')
