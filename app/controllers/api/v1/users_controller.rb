@@ -58,7 +58,7 @@ module Api
         end
         appointment_obj = {
           appointments:
-        } #rubocop:disable Lint/Syntax
+        }
         user_json.merge(role_json, appointment_obj)
       end
     end
