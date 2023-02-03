@@ -128,7 +128,10 @@ To run the project, execute the following command:
 run the code below in order to start the local server 
 
 ```
-    rails server
+    1. rails db:create,
+    2. rails db:migrate 
+    3. rails db:seed
+    4 and rails server (finally)
 ```
 
 ### Deployment
