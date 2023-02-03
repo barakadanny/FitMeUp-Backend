@@ -11,4 +11,5 @@ Rails.application.routes.draw do
       resources :trainer_specialities, only: [:create]
     end
   end
+  root 'api/v1/trainers#index'
 end
