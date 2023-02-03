@@ -44,7 +44,6 @@ After you're finished please remove all the comments and instructions!
   - [Prerequisites](#prerequisites)
   - [Install](#install)
   - [Usage](#usage)
-  - [Run tests](#run-tests)
   - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
@@ -130,15 +129,6 @@ run the code below in order to start the local server
 
 ```
     rails server
-```
-
-### Run tests
-
-To run tests, run the following command:
-Our tests were written with rspec, and you can use the code below in order to run the tests
-
-```
-    rspec spec
 ```
 
 ### Deployment
