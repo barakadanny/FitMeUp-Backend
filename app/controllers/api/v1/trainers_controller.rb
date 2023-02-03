@@ -36,7 +36,7 @@ class Api::V1::TrainersController < ApplicationController
       obj['name']
     end
     user_detail = {
-      id: trainer_obj.user_id
+      id: trainer_obj.id
     }
     specialities_obj = {
       specialities:
