@@ -39,7 +39,7 @@ class Api::V1::TrainersController < ApplicationController
       id: trainer_obj.id
     }
     specialities_obj = {
-      specialities:
+      specialities: specialities
     }
     user_detail.merge(user, trainer, specialities_obj)
   end
