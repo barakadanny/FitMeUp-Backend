@@ -92,14 +92,14 @@ killy = User.create(username: 'itz_me_killy', full_name: 'Killy Quami', date_of_
 user_killy = Role.create(user: killy)
 puts "User 1 Created !!\n"
 
-danny = User.create(username: 'yo_yo_danny', full_name: 'Danny Baraka', date_of_birth: '10/05/1995', address: 'Nairobi, KENYA', email_address: 'danny@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://lh3.googleusercontent.com/pw/AMWts8AHo9WAI-VO1PeABBacFoQTIKiAgRp4KFTMme8wZXSTNOewNiJoCzy6iimgMwpZUkZsvYVxSP7nHwUnkbMRyxxwvwYh4U-uvnicsRj4I72HSMnUQs4pYsMsFK1swaWqZ1F3zdihLsfJODDwHehvuWrq=w553-h974-no?authuser=0', password: 'dannydanny', password_confirmation: 'dannydanny')
+danny = User.create(username: 'yo_yo_danny', full_name: 'Danny Baraka', date_of_birth: '10/05/1995', address: 'Nairobi, KENYA', email_address: 'danny@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://lh3.googleusercontent.com/pw/AMWts8D-Tc57tuhhEAuXfojCP0USzWkZaNmm94C2ZbxnFRa0T4qXhJSKFA-eojgYGd6iGGTKHkMaEmguT6pL3iDcfyqjRStQWKavdnhi739qmH4M9lMlrePgzdY-yXQeR1dqexNkW5UhEkDZoaI3YQHDVRcq=w553-h974-no?authuser=0', password: 'dannydanny', password_confirmation: 'dannydanny')
 danny_role = Role.create(role: 'trainer', user: danny)
-trainer_danny = Trainer.create(price: 20.25, user: danny)
+trainer_danny = Trainer.create(price: 20.25, user: danny, bio: "A revolutionary virtual fitness company that helps entrepreneurs get in shape in 30 minutes a week. Without missing their favorite foods.With over 15 years of experience training Olympic, professional, and collegiate athletes, I've developed a system to help people get a body they want in less time. This is the reason I work with entrepreneurs and business professionals who are strapped for time and need their health to be in tip-top shape to change the world.")
 puts "Trainer 1 Created !!\n"
 
-justice = User.create(username: 'bajeri.justice', full_name: 'Justice Bajeri', date_of_birth: '11/11/2001', address: 'Accra, GHANA', email_address: 'justice@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://drive.google.com/uc?id=1FgGXNDA8hYAz95F5vDp2seV9pTP8InhA', password: '12345678', password_confirmation: '12345678')
+justice = User.create(username: 'bajeri.justice', full_name: 'Justice Bajeri', date_of_birth: '11/11/2001', address: 'Accra, GHANA', email_address: 'justice@gmail.com', phone_number: '+91 1234567890', profile_pic: 'https://lh3.googleusercontent.com/pw/AMWts8AyLfveBQjzXU52kmUkfy_DRUz_CI36e3ydm2YBn-SFsgX55ZDmxL0xA3RC5vsWMI7H7obX4uTz2MT3KWRLWaVm3Kl4vUAQ8hQhWxy5fq-S3BYdFvwHvqAMD8yba5P2pykDyWkogVQveMY6Ay-ZjJO7=w553-h974-no?authuser=0', password: '12345678', password_confirmation: '12345678')
 justice_role = Role.create(role: 'trainer', user: justice)
-trainer_justice = Trainer.create(price: 10.25, user: justice)
+trainer_justice = Trainer.create(price: 10.25, user: justice,  bio: "A qualified personal trainer with a passion to help women on their journey to becoming happier, healthier, and stronger. I am an ex gymnast who used to compete to a very high level which is where my passion for fitness first came from. I’ve continued to pursue this passion my whole life and now have a degree in physical education. I pride myself on teaching women a sustainable approach to health and fitness. I will help you reach your goals and provide you with the knowledge to sustain them")
 
 puts "Trainer 2 Created !!\n"
 
