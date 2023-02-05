@@ -55,9 +55,13 @@ After you're finished please remove all the comments and instructions!
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Fit Me Up Backend <a name="about-project"></a>
+## About The Project <a name="about-project"></a>
 
-**Fit me up backend** is an api based application built with rails with an intention of being consumed by the front end version that is; [Fit Me Up frontend](https://github.com/killy10o10/FitMeUp).
+Fit Me Up is a revolutionary health and fitness platform that connects users with the best personal trainers in town! This is the repository for the backend API built with Ruby on Rails, designed to help users achieve their fitness goals effortlessly. With Fit Me Up, you can search for a personal trainer that fits your needs, book a session, and receive high-quality training from the comfort of your home.
+
+Our backend API is fast, secure, and user-friendly, making it easier for you to manage your health and fitness journey. Whether you're a fitness enthusiast looking for a professional trainer or a seasoned athlete looking for a performance boost, Fit Me Up is here to help. Join the health revolution today and start your journey to a healthier, happier you!
+
+Consumed by [Fit Me Up frontend](https://github.com/killy10o10/FitMeUp).
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -81,15 +85,28 @@ After you're finished please remove all the comments and instructions!
 
 ### Key Features <a name="key-features"></a>
 
-- **JWT Authentication**
-- **API versioning**
-- **Scalable database design**
+1. Technical
+
+- JWT Authentication
+- Authorization
+- Serialization
+- **API versioning
+- **Scalable database design
+
+2. Others
+
+- User registration and login
+- Trainer search and booking
+- Trainer login and booking management
+- Admin trainer creation
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- N/A
+[API Live](https://fitmeup.onrender.com/)
+
+*Note*: Access to data like booking and other requires access to the system( Registering | Login )
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -127,7 +144,7 @@ run the command below to install all gems for the project
 To run the project, execute the following command:
 run the code below in order to start the local server 
 
-```
+```ruby
     1. rails db:create,
     2. rails db:migrate 
     3. rails db:seed
@@ -143,8 +160,11 @@ You can deploy this project using [render](https://dashboard.render.com/)
 <!-- AUTHORS -->
 ## 👥 Authors <a name="authors"></a>
 
-> Mention all of the collaborators of this project.
-> 👤 **Author1**
+👨‍💻 **Baraka Danny**
+
+- GitHub: [@barakadan](https://github.com/barakadanny)
+- LinkedIn: [danny baraka](https://www.linkedin.com/in/danny-baraka-589156169/)
+
 👤 **Quami Killy**
 
 - GitHub: [@killy10o10](https://github.com/killy10o10)
@@ -163,11 +183,6 @@ You can deploy this project using [render](https://dashboard.render.com/)
 - Twitter: [kibirigejohn005](https://twitter.com/kibirigejohn005)
 - LinkedIn: [Kibirige John](https://www.linkedin.com/in/kibirigejohn005/)
 
-👨‍💻 **Baraka Danny**
-
-- GitHub: [@barakadan](https://github.com/barakadanny)
-- LinkedIn: [danny baraka](https://www.linkedin.com/in/danny-baraka-589156169/)
-
 👨‍💻 **Aakash Verma**
 
 - GitHub: [@skyv26](https://github.com/skyv26)
@@ -179,9 +194,15 @@ You can deploy this project using [render](https://dashboard.render.com/)
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- **Write a documentation for our api**
-- **Write more tests for the api**
-- **Optimize database queries and limit associations for better modularity**
+- Write a documentation for our api
+- Write more tests for the api
+- Integration of nutrition tracking and meal planning
+  - Daily food intake tracking
+  - Setting of nutrition goals
+  - Personalized meal plans based on unique nutritional needs
+  - Meal planning in advance with shopping lists, recipes, and cooking instructions
+  - Insight into food choices for healthier decision making
+  - Holistic approach to fitness journey incorporating nutrition and exercise.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -198,8 +219,7 @@ Feel free to check the [issues page](https://github.com/barakadanny/FitMeUp-Back
 
 ## ⭐️ Show your support <a name="support"></a>
 
-> Write a message to encourage readers to support your project
-> If you like this project...
+By giving Fit Me Up a star, you are helping to raise its visibility and bring it to the attention of others who might be interested in using it or contributing to its development.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
