@@ -16,6 +16,7 @@ class Api::V1::SpecialitiesController < ApplicationController
     end
   end
 
+  # destroy method
   def destroy
     @speciality = Speciality.find(params[:id])
     if @speciality.present?
